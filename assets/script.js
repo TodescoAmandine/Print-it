@@ -18,10 +18,18 @@ const slides = [
 ]
 //let arrow_right = document.getElementById("arrow_right")
 //console.log("arrow_right")
-let listearrow = document.getElementById("arrow");
-listearrow.addEventListener("click", () => {
+//let listearrow = document.getElementById("arrow");
+//listearrow.addEventListener("click", () => {
 
-	let arrow_right = document.querySelector("arrow_right")
-	arrow_right.style.color = "red"
-});
+///let arrow_right = document.querySelector("arrow_right")
+///arrow_right.style.color = "red"
+//});
 
+const arrowR = document.querySelector('.arrow_right')
+arrowR.addEventListener('click', function () {
+	alert('Bonjour')
+})
+const arrowL = document.querySelector('.arrow_left')
+arrowR.addEventListener('click', function () {
+	alert('Bonjour')
+})
