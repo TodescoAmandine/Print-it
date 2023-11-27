@@ -21,12 +21,22 @@
 <main>
 	<div id="banner">
 		<div class="arrow">
-			<img class="arrow_right" src="assets/images/arrow_right.png" alt="flèche droite">
-			<img class="arrow_left" src="assets/images/arrow_left.png" alt="flèche gauche">
+			<img id="arrow_right" src="assets/images/arrow_right.png" alt="flèche droite">
+			<img id="arrow_left" src="assets/images/arrow_left.png" alt="flèche gauche">
 		</div>
-		<img class="banner-img" src="./assets/images/slideshow/slide1.jpg" alt="Banner Print-it">
+		<div class="slider">
+			<!--<img class="banner-img" src="./assets/images/slideshow/slide0.jpg" alt="Banner Print-it">-->
+			<img class="active" src="assets/images/slideshow/slide1.jpg" alt="">
+			<!--<img src="assets/images/slideshow/slide1.jpg" alt="">
+			<img src="assets/images/slideshow/slide2.jpg" alt="">
+			<img src="assets/images/slideshow/slide3.png" alt="">-->
+		</div>
 		<p>Impressions tous formats <span>en boutique et en ligne</span></p>
 		<div class="dots">
+			<input type="radio" name="dot" id="dot__1" checked>
+			<input type="radio" name="dot" id="dot__2">
+			<input type="radio" name="dot" id="dot__3">
+			<input type="radio" name="dot" id="dot__4">
 		</div>
 	</div>
 	<section id="about-us" class="container">
