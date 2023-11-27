@@ -46,9 +46,33 @@ arrowL.addEventListener('click', function () {
 })
 
 /****DIAPOSITIVE EN COURS DE VISIONNAGE*** */
+let balisedots = document.querySelectorAll('input[name=".dot"]')
+let dot = ""
+for (let i = 0; balisedots.length; i++) {
+
+	if (balisedots[i].checked) {
+		dot = balisedots[i].value{
+			break
+		}
+
+	}
+
+}
+dot.addEventListener("click", () => {
+	console.log(dot.value)
+})
+
+
+
+
+
+
+
+
+
 
 /*on créé une const et on récupère les inputs dots*/
-const dots = document.querySelectorAll(".dots input")
+/*const dots = document.querySelectorAll(".dots input")*/
 
 /*on créé une fonction qui contient une boucle pour connaîte la place de l'élément selectionné
 on appel (n) nombre de l'endroit de l'object séléctionné...???
@@ -56,7 +80,7 @@ const elem récupère la place des dots dans le "tableau"lenght = i
 On remove le dot selected dans la classe des élém 
 et on ajoute dot selected à la classe selectionné
  */
-function selectDot(n) {
+/*function selectDot(n) {
 	for (let i = 0; i < dots.length; i++) {
 		const elem = dots[i];
 		elem.classList.remove("dot_selected");
@@ -66,19 +90,19 @@ function selectDot(n) {
 		}
 	}
 }
-
+*/
 /*maintenant que l'on connait la place de dot selected grâce à la fonction, on créé une boucle pour appliquer un addlistener au click*/
-for (let i = 0; i < dots.length; i++) {
+/* for (let i = 0; i < dots.length; i++) {
 	const elem = dots[i];
 	elem.addEventListener('click', () => {
 		selectDot(i)/*applique le addEventL au clic à selectDOt récupéré*/
-		console.log('dot_selected')
+/*console.log('dot_selected')
 
-	})
+})
 
-}
+} 
 /*est ce que cela corresopnd à un compteur ??*/
-selectDot(0)
+/*selectDot(0)*/
 
 
 
