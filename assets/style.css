@@ -220,15 +220,17 @@ header {
 
 /* Code CSS en prévision de l'ajout d'un carousel pour la bannière */
 /* Gestion des fleches du carrousel */
-/*#banner .arrow {}*/
+#banner .arrow {
+    /*  position: absolute;*/
+}
 
-#arrow_left {
+#banner .arrow_left {
     top: 45%;
     left: 10px;
     position: absolute;
 }
 
-#arrow_right {
+#banner .arrow_right {
     top: 45%;
     right: 10px;
     position: absolute;
@@ -258,7 +260,6 @@ header {
 
 /* Fin du code CSS pour le carousel */
 #banner p {
-    position: absolute;
     font-family: 'Roboto Slab', sans-serif;
     font-weight: 900;
     font-size: 50px;

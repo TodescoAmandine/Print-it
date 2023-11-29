@@ -1,4 +1,3 @@
-
 const slides = [
 	{
 		"image": "slide1.jpg",
@@ -18,129 +17,102 @@ const slides = [
 	}
 ]
 
-
-
-/******* ALERTE SUR EVENT LISTENER FLECHES*/
-
-/*avec classe
-
+/* RECUPERATION DU DOM */
+let img = document.querySelector('#banner .banner-img');
+let tagLine = document.querySelector('#banner p');
 let arrowR = document.querySelector('.arrow_right')
-arrowR.addEventListener('click', function () {
-	alert('Bonjour')
-})
 let arrowL = document.querySelector('.arrow_left')
-arrowL.addEventListener('click', function () {
-	alert('Bonjour')
-})*/
+
+/* INITIALISATION DES VARIABLES */
+let imagePath = "assets/images/slideshow/";
+let activeStep = 0;
+let slidesLength = slides.length - 1;
+
+/* INITIALISATION DES ECOUTEURS */
+
+arrowR.addEventListener('click', slideSuivante)
+arrowL.addEventListener('click', slidePrecedente)
+
+/*FONCTION MAIN*/
+/*appel toute les fonctions au même endroit*/
 
 
-
-/*avec ID*/
-let arrowR = document.getElementById('arrow_right')
-arrowR.addEventListener('click', function () {
-	alert('Bonjour')
-})
-let arrowL = document.getElementById('arrow_left')
-arrowL.addEventListener('click', function () {
-	alert('Bonjour')
-})
-
-/****DIAPOSITIVE EN COURS DE VISIONNAGE*** */
-let balisedots = document.querySelectorAll('input[name=".dot"]')
-let dot = ""
-for (let i = 0; balisedots.length; i++) {
-
-	if (balisedots[i].checked) {
-		dot = balisedots[i].value{
-			break
-		}
-
-	}
-
-}
-dot.addEventListener("click", () => {
-	console.log(dot.value)
-})
-
-
-
-
-
-
-
-
-
-
-/*on créé une const et on récupère les inputs dots*/
-/*const dots = document.querySelectorAll(".dots input")*/
-
-/*on créé une fonction qui contient une boucle pour connaîte la place de l'élément selectionné
-on appel (n) nombre de l'endroit de l'object séléctionné...???
-const elem récupère la place des dots dans le "tableau"lenght = i
-On remove le dot selected dans la classe des élém 
-et on ajoute dot selected à la classe selectionné
- */
-/*function selectDot(n) {
-	for (let i = 0; i < dots.length; i++) {
-		const elem = dots[i];
-		elem.classList.remove("dot_selected");
-		if (i == n) {
-			// ajouter la classe selected a l'element
-			elem.classList.add('dot_selected');
-		}
-	}
-}
-*/
-/*maintenant que l'on connait la place de dot selected grâce à la fonction, on créé une boucle pour appliquer un addlistener au click*/
-/* for (let i = 0; i < dots.length; i++) {
-	const elem = dots[i];
-	elem.addEventListener('click', () => {
-		selectDot(i)/*applique le addEventL au clic à selectDOt récupéré*/
-/*console.log('dot_selected')
-
-})
-
-} 
-/*est ce que cela corresopnd à un compteur ??*/
-/*selectDot(0)*/
-
-
-
-
-
-/* 
-essai slide
-const items = document.querySelectorAll(".slider img");
-const nbSlide = items.length;
-const suivant = document.querySelector('.arrow_right');
-const precedent = document.querySelector('.arrow_left');
-let count = 0;
-
+/*fonction slide suivante est on augmente le score de active steps si active step est plus grand que tableau de slide et update le slider*/
 function slideSuivante() {
-	items[count].classList.remove('active');
+	activeStep++;
 
-	if (count < nbSlide - 1) {
-		count++;
-	} else {
-		count = 0;
+	if (activeStep > slidesLength) {
+		activeStep = 0;
 	}
-	items[count].classList.add('active')
-	console.log(items[count]);
+
+	updateSlider();
 }
-suivant.addEventListener('click', slideSuivante)
 
 function slidePrecedente() {
-	items[count].classList.remove('active');
+	/* TODO */
+	/*comme on part en sens inverse on va décroitre -- au lieu de ++*/
+	activeStep--;
 
-	if (count > 0) {
-		count--;
-	} else {
-		count = nbSlide - 1;
+	if (activeStep < 0) {
+		activeStep = slidesLength - 1;
+	}
+	/*else {
+		activeStep == 0;
+	}*/
+	updateSlider();
+}
+
+/*update la position de slider*/
+/*La fonction de update de slider est 
+variable de selectslide est égale à la position de l'image dans active step, on lui indique la source de l'image et le tag line et on update le dot opur lier les position images et dots*/
+function updateSlider() {
+	let selectedSlide = slides[activeStep];
+	img.src = imagePath + selectedSlide.image;
+	tagLine.innerHTML = selectedSlide.tagLine;
+	updateDot()
+}
+/*updatedot = la position de dot*/
+/*la fonction de update dot est une constante de tout les dots. Pour chaque dots on mets l^'objet key dot si la classe dot contient dot selected 
+Key(object) place la position dots comme dans un tableau*/
+function updateDot() {
+	const allDot = document.querySelectorAll('.dot')
+	allDot.forEach((dot, key) => {
+		if (dot.classList.contains('dot_selected')) {
+			dot.classList.remove('dot_selected')
+		}
+	})
+
+	allDot[activeStep].classList.add('dot_selected')
+}
+/*création des dots dans html*/
+function createDots() {
+	let dotsContainer = document.querySelector('.dots')
+
+	slides.forEach((slide, key) => {
+		let dot = document.createElement('div');
+		dot.classList.add('dot');
+		if (key === 0) {
+			dot.classList.add('dot_selected');
+		}
+		dotsContainer.appendChild(dot);
+	})
+}
+
+createDots();
+
+
+/*ECOUTEURS DOTS*/
+/*Je veux que lorsqu'on clic sur un dot l'image correspondante s'affiche*/
+/* function clickDots() {
+	let dotsclick = document.querySelector(".dot")
+
+	dotsclick.addEventListener("click", slideSuivante){
 
 	}
-
-	items[count].classList.add('active')
-	console.log(items[count]);
-
 }
-precedent.addEventListener('click', slidePrecedente) */
+clickDots();
+ */
+
+/*document.querySelector("dot").addEventListener("click", => {
+	slide.classeName = "updateSlider"
+})*/
