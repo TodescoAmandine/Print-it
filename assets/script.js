@@ -33,11 +33,7 @@ let slidesLength = slides.length - 1;
 arrowR.addEventListener('click', slideSuivante)
 arrowL.addEventListener('click', slidePrecedente)
 
-/*FONCTION MAIN*/
-/*appel toute les fonctions au même endroit*/
 
-
-/*fonction slide suivante est on augmente le score de active steps si active step est plus grand que tableau de slide et update le slider*/
 function slideSuivante() {
 	activeStep++;
 
@@ -49,31 +45,24 @@ function slideSuivante() {
 }
 
 function slidePrecedente() {
-	/* TODO */
-	/*comme on part en sens inverse on va décroitre -- au lieu de ++*/
+
 	activeStep--;
 
 	if (activeStep < 0) {
 		activeStep = slidesLength - 1;
 	}
-	/*else {
-		activeStep == 0;
-	}*/
+
 	updateSlider();
 }
 
-/*update la position de slider*/
-/*La fonction de update de slider est 
-variable de selectslide est égale à la position de l'image dans active step, on lui indique la source de l'image et le tag line et on update le dot opur lier les position images et dots*/
+
 function updateSlider() {
 	let selectedSlide = slides[activeStep];
 	img.src = imagePath + selectedSlide.image;
 	tagLine.innerHTML = selectedSlide.tagLine;
 	updateDot()
 }
-/*updatedot = la position de dot*/
-/*la fonction de update dot est une constante de tout les dots. Pour chaque dots on mets l^'objet key dot si la classe dot contient dot selected 
-Key(object) place la position dots comme dans un tableau*/
+
 function updateDot() {
 	const allDot = document.querySelectorAll('.dot')
 	allDot.forEach((dot, key) => {
@@ -101,18 +90,4 @@ function createDots() {
 createDots();
 
 
-/*ECOUTEURS DOTS*/
-/*Je veux que lorsqu'on clic sur un dot l'image correspondante s'affiche*/
-/* function clickDots() {
-	let dotsclick = document.querySelector(".dot")
 
-	dotsclick.addEventListener("click", slideSuivante){
-
-	}
-}
-clickDots();
- */
-
-/*document.querySelector("dot").addEventListener("click", => {
-	slide.classeName = "updateSlider"
-})*/
